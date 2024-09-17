@@ -3,7 +3,7 @@ const requestHandler = (req, res) => {
 
     if (req.url == "/") {
         res.write("<h3>Server working..</h3>");
-        res.write("<form action='send' method='POST'><button type='submit'>Send to server</button></form>");
+        res.write("<form action='send' method='POST'><button type='submit'>Send to server..</button></form>");
         res.write(`<code>code = ${req.url.slice(1)} Method = ${req.method}</code>`);
         return res.end();
     } else if (req.url == "/exit") {
@@ -16,7 +16,6 @@ const requestHandler = (req, res) => {
     }
     else if (req.url == "/redirect") {
         // redirecting 
-
         const body = [];
         req.on("data", (chunk) => {
             body.push(chunk);
