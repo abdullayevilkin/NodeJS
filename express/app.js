@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require("path");
 const app = express();
 
 const adminRoute = require("./routes/admin");
@@ -21,6 +22,8 @@ app.use((req, res, next) => {
 });
 */
 
+
+// bodyParse help you get request body with req.body ( as { title: 'ttf' })
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // >> Routing
@@ -34,7 +37,9 @@ app.use("/admin", adminRoute);
 app.use(shopRoute);
 
 app.use((req, res, next) => {
-    res.status(404).send("<h2 style='color:red;'>Page not found !</h2>");
+    // res.status(404).write("<h2 style='color:red;'>Page not found !</h2>");
+    res.status(404).sendFile(path.join(__dirname, "views", "404.html"));
+
 })
 
 app.listen(1313)
