@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
+
 const app = express();
 
 const adminRoute = require("./routes/admin");
@@ -23,8 +24,13 @@ app.use((req, res, next) => {
 */
 
 
-// bodyParse help you get request body with req.body ( as { title: 'ttf' })
+// DEF: bodyParse help you get request body with req.body ( as { title: 'ttf' })
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// DEF: static fayllari istifade etmek ucun..  ( href="/css/filename" )
+app.use(express.static(path.join(__dirname, "public")));
+
+
 
 // >> Routing
 app.use("/", (req, res, next) => {
@@ -42,4 +48,6 @@ app.use((req, res, next) => {
 
 })
 
-app.listen(1313)
+app.listen(1313, function () {
+    console.log("Server running on localhost:1313");
+})
